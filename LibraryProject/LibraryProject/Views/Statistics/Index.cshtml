@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="row">
+    <div class="col-lg-3 col-sm-3 col-xs-12">
+        <div class="white-box analytics-info">
+            <h3 class="box-title">Total Category</h3>
+            <ul class="list-inline two-part">
+                <li>
+                    <div class="sparklinedash"></div>
+                </li>
+                <li class="text-right"><i class="text-success"></i> <span class="counter text-success">@ViewBag.CategoryCount</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-3 col-xs-12">
+        <div class="white-box analytics-info">
+            <h3 class="box-title">Total Writer</h3>
+            <ul class="list-inline two-part">
+                <li>
+                    <div class="sparklinedash2"></div>
+                </li>
+                <li class="text-right"><i class="text-purple"></i> <span class="counter text-purple">@ViewBag.WriterCount</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-3 col-xs-12">
+        <div class="white-box analytics-info">
+            <h3 class="box-title">Total Book</h3>
+            <ul class="list-inline two-part">
+                <li>
+                    <div class="sparklinedash3"></div>
+                </li>
+                <li class="text-right"><i class="text-info"></i> <span class="counter text-info">@ViewBag.BookCount</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-3 col-xs-12">
+        <div class="white-box analytics-info">
+            <h3 class="box-title">Borrowed Books</h3>
+            <ul class="list-inline two-part">
+                <li>
+                    <div class="sparklinedash4"></div>
+                </li>
+                <li class="text-right"><i class="text-danger"></i> <span class="text-danger">@ViewBag.BorrowedBookCount</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4 col-sm-3 col-xs-12">
+        <div class="white-box analytics-info">
+            <h3 class="box-title">Delivered Books</h3>
+            <ul class="list-inline two-part">
+                <li>
+                    <div class="sparklinedash"></div>
+                </li>
+                <li class="text-right"><i class="text-success"></i> <span class="counter text-success">@ViewBag.DeliveredBookCount</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-4 col-sm-3 col-xs-12">
+        <div class="white-box analytics-info">
+            <h3 class="box-title">Last Week Borrowed Books</h3>
+            <ul class="list-inline two-part">
+                <li>
+                    <div class="sparklinedash"></div>
+                </li>
+                <li class="text-right"><i class="text-success"></i> <span class="counter text-success">@ViewBag.LastWeekBorrowed</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-4 col-sm-3 col-xs-12">
+        <div class="white-box analytics-info">
+            <h3 class="box-title">Last Week Delivered Books</h3>
+            <ul class="list-inline two-part">
+                <li>
+                    <div class="sparklinedash3"></div>
+                </li>
+                <li class="text-right"><i class="text-success"></i> <span class="counter text-success">@ViewBag.LastWeekDelivered</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+@section script{
+    <script src="~/Scripts/jquery.charts-sparkline.js"></script>
+}

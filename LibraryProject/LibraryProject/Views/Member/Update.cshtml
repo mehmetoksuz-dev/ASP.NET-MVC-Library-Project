@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Update Member";
+}
+
+<h2>Update Member</h2>
+
+@using Library.Data.Model
+@model Member
+
+<form class="form-horizontal">
+    <div class="form-group">
+        <label class="col-md-12">Name</label>
+        <div class="col-md-12">
+            <input id="memberName" value="@Model.Name" type="text" class="form-control" placeholder="Please enter name of user.">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-12">Surname</label>
+        <div class="col-md-12">
+            <input id="memberSurname" value="@Model.Surname" type="text" class="form-control" placeholder="Please enter surname of user.">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-12">Tc</label>
+        <div class="col-md-12">
+            <input id="memberTc" value="@Model.TcNo" type="text" class="form-control" placeholder="Please enter TC of user.">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-12">Phone</label>
+        <div class="col-md-12">
+            <input id="memberPhone" value="@Model.PhoneNum" type="text" class="form-control" placeholder="Please enter phone number of user.">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            <input id="updateMember" data-id="@Model.Id" type="button" class="btn btn-block btn-info" value="Update" />
+        </div>
+    </div>
+</form>

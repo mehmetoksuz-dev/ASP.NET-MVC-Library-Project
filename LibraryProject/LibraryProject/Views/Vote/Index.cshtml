@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Vote Book";
+}
+@using Library.Data.Model;
+@model List<Book>
+
+<h2>Vote Book</h2>
+
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>I recommend</th>
+            <th>I don't recommend</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var books in Model)
+        {
+            <tr>
+                <td>@books.Name</td>
+                <td>
+                    <center>
+                        <button class="btnRecommend btn btn-danger btn-circle btn-lg" value="@books.Id">
+                            <i class="fa fa-heart"></i>
+                        </button>
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        <button class="btnDontRecommend btn btn-warning btn-circle btn-lg" value="@books.Id">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </center>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Name</th>
+        </tr>
+    </tfoot>
+</table>
+

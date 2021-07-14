@@ -1,0 +1,6 @@
+C:\Users\mehme\source\repos\LibraryProject\Library.Data.Model\bin\Debug\Library.Data.Model.dll
+C:\Users\mehme\source\repos\LibraryProject\Library.Data.Model\bin\Debug\Library.Data.Model.pdb
+C:\Users\mehme\source\repos\LibraryProject\Library.Data.Model\obj\Debug\Library.Data.Model.csprojAssemblyReference.cache
+C:\Users\mehme\source\repos\LibraryProject\Library.Data.Model\obj\Debug\Library.Data.Model.csproj.CoreCompileInputs.cache
+C:\Users\mehme\source\repos\LibraryProject\Library.Data.Model\obj\Debug\Library.Data.Model.dll
+C:\Users\mehme\source\repos\LibraryProject\Library.Data.Model\obj\Debug\Library.Data.Model.pdb

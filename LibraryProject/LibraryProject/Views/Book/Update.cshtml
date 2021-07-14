@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "Update Book";
+    int counter = 0;
+}
+
+@using Library.Data.Model;
+@model Book
+
+<h2>Update Book</h2>
+
+
+<form class="form-horizontal">
+        <label class="col-sm-12">Select Category</label>
+    <div class="form-group">
+        <div class="col-sm-10">
+            <select id="categoriess" class="form-control">
+                @foreach (var ctg in ViewBag.Categories) //kategorileri çektik
+                {
+                    counter = 0;
+                    foreach (var addedCtg in Model.Categories) //kitaba ait kategoriler için bir daha döndük
+                    {
+                        if (ctg.Id != addedCtg.Id)
+                        {
+                            if (counter < Model.Categories.Count - 1)
+                            {
+                                counter++;
+                            }
+                            else
+                            {
+                                <option data-id="@ctg.Id">@ctg.Name</option>
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+
+            </select>
+        </div>
+        <div class="col-sm-2">
+            @*//col md classi ile ayarladık yerlerini 11-1 şeklinde*@
+            <input type="button" id="btnAddCategory" class="btn btn-block btn-info" value="Add">
+        </div>
+        <div id="addedCategories" class="form-group">
+            <label class="col-md-12">Categories</label>
+            @foreach (var category in Model.Categories)
+            {
+                <div id="@category.Id" class="col-md-1 bg-primary ctgDelete" style="margin-right:2px; margin-bottom:2px;">@category.Name</div>
+            }
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-12">Select Writer</label>
+        <div class="col-sm-12">
+            <select id="writer" class="form-control">
+                @foreach (var writers in ViewBag.Writers)
+                {
+                    if (Model.Writer.Id == writers.Id)//option kısmında en basa kitaba kayıtlı olan yazarı almak için yaptıgım kosul
+                    {
+                        <option data-id="@writers.Id" selected>@writers.Name</option> //selected ile secili geldi
+                    }
+                    else
+                    {
+                        <option data-id="@writers.Id">@writers.Name</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-12">Book Name</label>
+        <div class="col-md-12">
+            <input id="bookName" value="@Model.Name"type="text" class="form-control" placeholder="Please enter name of book.">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-12">Number of Book</label>
+        <div class="col-md-12">
+            <input id="numOfBook" value="@Model.Number" type="text" class="form-control" placeholder="Please enter a number of book.">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-12">Row Number</label>
+        <div class="col-md-12">
+            <input id="rowOfBook" value="@Model.RowNumber" type="text" class="form-control" placeholder="Please enter a row number of book.">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            <input id="updateBook" data-id="@Model.Id" type="button" class="btn btn-block btn-info" value="Update" />
+        </div>
+    </div>
+</form>

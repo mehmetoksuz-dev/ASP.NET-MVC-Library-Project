@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Update Membership";
+}
+
+@using Library.Data.Model;
+@model Member
+
+<h2>Update Membership</h2>
+
+
+<form class="form-horizontal">
+    <div class="form-group">
+        <label class="col-md-12">Name & Surname</label>
+        <div class="col-md-12">
+            <span>@Model.Name @Model.Surname</span>
+        </div>
+    </div>
+    <input type="hidden" id="memberId"value="@Model.Id"/>
+    <div class="form-group">
+        <label class="col-md-12">Mail</label>
+        <div class="col-md-12">
+            <input id="mail" value="@Model.Mail"type="text" class="form-control" placeholder="Please enter mail address.">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-12">Password</label>
+        <div class="col-md-12">
+            <input id="password" type="password" class="form-control" placeholder="Please enter password.">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-12">Password (Again)</label>
+        <div class="col-md-12">
+            <input id="passwordAgain" type="password" class="form-control" placeholder="Please enter password again.">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            <input id="updateMemberShip" type="button" class="btn btn-block btn-info" value="Save" />
+        </div>
+    </div>
+</form>

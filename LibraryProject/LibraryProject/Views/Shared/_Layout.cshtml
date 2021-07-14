@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/sidebar-nav.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+    <link href="~/Content/Css/css-chart.css" rel="stylesheet" />
+    <link href="~/Content/Css/animate.css" rel="stylesheet" />
+    <link href="~/Content/Css/style.css" rel="stylesheet" />
+    <link href="~/Content/Css/blue.css" rel="stylesheet" />
+    <link href="~/Content/Css/jquery.dataTables.min.css" rel="stylesheet" /> @*i used api from https://datatables.net/examples/api/multi_filter.html*@
+    <link href="~/Content/Css/buttons.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/sweetalert2.min.css" rel="stylesheet" />
+    <style>
+        tfoot input {
+            width: 100%;
+            padding: 3px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="preloader">
+        <div class="cssload-speeding-wheel"></div>
+    </div>
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top m-b-0">
+            <div class="navbar-header">
+                <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
+                <div class="top-left-part">
+                    <a class="logo" href="@Url.Action("Index","")">
+                        <b>
+                            <img src="~/Content/libraryImg/eliteadmin-logo.png" />
+                        </b><span class="hidden-xs">
+                            <img src="~/Content/libraryImg/eliteadmin-text.png" />
+                        </span>
+                    </a>
+                </div>
+                <ul class="nav navbar-top-links navbar-left hidden-xs">
+                    <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
+                </ul>
+                <ul class="nav navbar-top-links navbar-right pull-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="~/Content/libraryImg/user.png" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">@Request.Cookies["member"]["Name"]</b> </a>
+                        <ul class="dropdown-menu dropdown-user animated flipInY">
+                            <li><a href="@Url.Action("UpdateProfileInfo","Membership")"><i class="fa fa-power-off"></i> Update Profile </a></li>
+                            <li><a href="@Url.Action("Logout","Login")"><i class="fa fa-power-off"></i> Logout </a></li>
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-header -->
+            <!-- /.navbar-top-links -->
+            <!-- /.navbar-static-side -->
+        </nav>
+        <!-- Left navbar-header -->
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse slimscrollsidebar">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search hidden-sm hidden-md hidden-lg">
+                        <!-- input-group -->
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"> <i class="fa fa-search"></i> </button>
+                            </span>
+                        </div>
+                        <!-- /input-group -->
+                    </li>
+                    <li class="user-pro">
+                        <a href="#" class="waves-effect"><img src="~/Content/libraryImg/user.png" alt="user-img" class="img-circle"> <span class="hide-menu"> @Request.Cookies["member"]["Name"] @Request.Cookies["member"]["Surname"]<span class="fa arrow"></span></span></a>
+                        <ul class="nav nav-second-level">
+                            @*<li><a href="javascript:void(0)"><i class="ti-settings"></i> Account Setting</a></li>*@
+                            <li><a href="@Url.Action("UpdateProfileInfo","Membership")"><i class="fa fa-power-off"></i> Update Profile </a></li>
+                            <li><a href="@Url.Action("Logout","Login")"><i class="fa fa-power-off"></i> Logout </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-small-cap m-t-10">—— MENÜLER</li>
+                    <li>
+                        <a href="@Url.Action("Index","Statistics")" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="q"></i>Statistics</a>
+                    </li>
+                    <li>
+                        <a href="inbox.html" class="waves-effect"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Categories</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="@Url.Action("Index","Category")">List Categories</a></li>
+                            <li><a id="btnAddCtg" class="btnAddCtg" href="javascript:void(0)">Add Category</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="inbox.html" class="waves-effect"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Writers </span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="@Url.Action("Index","Writer")">List Writers</a></li>
+                            <li><a id="btnAddWriter" class="btnAddWriter" href="javascript:void(0)">Add Writer</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="inbox.html" class="waves-effect"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Books</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="@Url.Action("Index","Book")">List Book</a></li>
+                            <li><a href="@Url.Action("AddBook","Book")">Add Book</a></li>
+                            <li><a href="@Url.Action("BookSuplied","BorrowBook")">Borrowed Books</a></li>
+                            <li><a href="@Url.Action("BookDelivered","BorrowBook")">Delivered Books</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="inbox.html" class="waves-effect"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Members</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="@Url.Action("Index","Member")">List Members</a></li>
+                            <li><a href="@Url.Action("AddMember","Member")">Add Member</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="@Url.Action("Index","Membership")" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="q"></i>Membership Operations</a>
+                    </li>
+
+                    <li>
+                        <a href="@Url.Action("Index","Vote")" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="q"></i>Vote Book</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Left navbar-header end -->
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">@ViewBag.Title</h4>
+                    </div>
+                </div>
+                <div class="row white-box">
+                    @RenderBody()
+                </div>
+                <!-- /.container-fluid -->
+                <footer class="footer text-center"> 2021 &copy; Toros Library System </footer>
+            </div>
+            <!-- /#page-wrapper -->
+        </div>
+        <!-- /#wrapper -->
+        <!-- jQuery -->
+        <script src="~/Scripts/jquery.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/sidebar-nav.min.js"></script>
+        <script src="~/Scripts/jquery.slimscroll.js"></script>
+        <script src="~/Scripts/waves.js"></script>
+        <script src="~/Scripts/jquery.flot.js"></script>
+        <script src="~/Scripts/jquery.sparkline.min.js"></script>
+        <script src="~/Scripts/jquery.easypiechart.min.js"></script>
+        <script src="~/Scripts/easy-pie-chart.init.js"></script>
+        <script src="~/Scripts/custom.js"></script>
+        <script src="~/Scripts/dashboard2.js"></script>
+        <script src="~/Scripts/jQuery.style.switcher.js"></script>
+        <script src="~/Scripts/jquery.dataTables.min.js"></script>
+        <script src="~/Scripts/dataTables.buttons.min.js"></script>
+        <script src="~/Scripts/buttons.flash.min.js"></script>
+        <script src="~/Scripts/jszip.min.js"></script>
+        <script src="~/Scripts/pdfmake.min.js"></script>
+        <script src="~/Scripts/vfs_fonts.js"></script>
+        <script src="~/Scripts/buttons.html5.min.js"></script>
+        <script src="~/Scripts/buttons.print.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                // Setup - add a text input to each footer cell
+                $('#example tfoot th').each(function () {
+                    var title = $(this).text();
+                    $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+                });
+
+                // DataTable
+                var table = $('#example').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+
+                //Apply the search
+                table.columns().every(function () {
+                    var that = this;
+
+                    $('input', this.footer()).on('keyup change clear', function () {
+                        if (that.search() !== this.value) {
+                            that
+                                .search(this.value)
+                                .draw();
+                        }
+                    });
+                });
+            });
+        </script>
+        <script src="~/Scripts/sweetalert2.min.js"></script>
+        <script src="~/Scripts/main.js"></script>
+    @RenderSection("script",false)
+    </div>
+</body>
+</html>

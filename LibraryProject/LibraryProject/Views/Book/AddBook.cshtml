@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Add Book";
+}
+
+<h2>Add Book</h2>
+
+
+<form class="form-horizontal">
+    <div class="form-group">
+        <label class="col-sm-12">Select Category</label>
+        <div class="col-sm-10">
+            <select id="categoriess" class="form-control">
+                @foreach (var ctg in ViewBag.Categories)
+                {
+                    <option data-id="@ctg.Id">@ctg.Name</option>
+                }
+
+            </select>
+        </div>
+        <div class="col-sm-2"> @*//col md classi ile ayarladık yerlerini 11-1 şeklinde*@
+            <input type="button" id="btnAddCategory" class="btn btn-block btn-info" value="Add">
+        </div>
+        <div id="addedCategories" class="form-group" >
+            <label class="col-md-12">Categories</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-12">Select Writer</label>
+        <div class="col-sm-12">
+            <select id="writer" class="form-control">
+                @foreach (var writers in ViewBag.Writers)
+                {
+                    <option data-id="@writers.Id">@writers.Name</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-12">Book Name</label>
+        <div class="col-md-12">
+            <input id="bookName" type="text" class="form-control" placeholder="Please enter name of book.">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-12">Number of Book</label>
+        <div class="col-md-12">
+            <input id="numOfBook" type="text" class="form-control" placeholder="Please enter a number of book.">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-12">Row Number</label>
+        <div class="col-md-12">
+            <input id="rowOfBook" type="text" class="form-control" placeholder="Please enter a row number of book.">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            <input id="saveBook" type="button" class="btn btn-block btn-info" value="Save" />
+        </div>
+    </div>
+</form>

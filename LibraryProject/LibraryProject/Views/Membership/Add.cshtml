@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Add Membership";
+}
+
+@using Library.Data.Model;
+@model List<Member>
+
+<h2>Add Membership</h2>
+
+
+<form class="form-horizontal">
+    <div class="form-group">
+        <label class="col-md-12">Name & Surname</label>
+        <div class="col-md-12">
+            <select id="memberId">
+                @foreach (var member in Model)
+                {
+                    <option value="@member.Id">@member.Name @member.Surname</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-12">Mail</label>
+        <div class="col-md-12">
+            <input id="mail" type="text" class="form-control" placeholder="Please enter mail address.">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-12">Password</label>
+        <div class="col-md-12">
+            <input id="password" type="password" class="form-control" placeholder="Please enter password.">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-12">Password (Again)</label>
+        <div class="col-md-12">
+            <input id="passwordAgain" type="password" class="form-control" placeholder="Please enter password again.">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            <input id="addMemberShip" type="button" class="btn btn-block btn-info" value="Save" />
+        </div>
+    </div>
+</form>

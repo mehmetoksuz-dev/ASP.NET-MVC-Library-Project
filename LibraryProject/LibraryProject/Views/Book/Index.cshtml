@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Books";
+}
+@using Library.Data.Model;
+@model List<Book>
+
+<h2>Books</h2>
+
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>Row Number</th>
+            <th>Category</th>
+            <th>Book Name</th>
+            <th>Number of Book</th>
+            <th>Writer</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+                string categories = "";
+            <tr>
+                <td>@book.RowNumber</td>
+                <td>
+                    @foreach (var ctg in book.Categories)
+                    {
+                        categories += ctg.Name + ",";
+                    }
+                    @categories
+            </td>
+            <td>@book.Name</td>
+            <td>@book.Number</td>
+            <td>@book.Writer.Name</td>
+            <td><a href="@Url.Action("Update","Book", new { bookId = book.Id})" class="btn btn-custom">Update</a></td>
+            <td><button class="btnBookDelete btn btn-danger" value="@book.Id">Delete</button></td>
+        </tr>
+    }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Row Number</th>
+            <th>Category</th>
+            <th>Book Name</th>
+            <th>Number of Book</th>
+            <th>Writer</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </tfoot>
+</table>
+

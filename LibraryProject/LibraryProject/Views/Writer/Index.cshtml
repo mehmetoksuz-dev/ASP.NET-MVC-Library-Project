@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Writers";
+}
+@using Library.Data.Model;
+@model List<Writer>
+
+<h2>WRITERS</h2>
+
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Number of Books</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var writers in Model)
+        {
+            <tr>
+                <td>@writers.Name</td>
+                <td>@writers.Books.Count</td>
+                <td><button class="btnWriterUpdate btn btn-custom" value="@writers.Id">Update</button></td>
+                <td><button class="btnWriterDelete btn btn-danger" value="@writers.Id">Delete</button></td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Name</th>
+            <th>Number of Books</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </tfoot>
+</table>
+

@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Categories";
+}
+@using Library.Data.Model;
+@model List<Category>
+
+<h2>Categories</h2>
+
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Number of Books</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var categories in Model)
+        {
+        <tr>
+            <td>@categories.Name</td>
+            <td>@categories.Books.Count</td>
+            <td><button class="btnUpdate btn btn-custom" value="@categories.Id">Update</button></td>
+            <td><button class="btnDelete btn btn-danger" value="@categories.Id">Delete</button></td>
+        </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Name</th>
+            <th>Number of Books</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </tfoot>
+</table>
+

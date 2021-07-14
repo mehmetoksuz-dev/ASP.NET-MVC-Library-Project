@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Update Given Book";
+}
+
+@using Library.Data.Model
+@model BorrowBook
+
+<h2>Update Given Book</h2>
+
+<form class="form-horizontal">
+    <div class="form-group">
+        <label class="col-sm-12">Members</label>
+        <div class="col-sm-10">
+            <select id="memberId" class="form-control">
+                @foreach (var member in ViewBag.Members)
+                {
+                    if (member.Id == Model.MemberId)
+                    {
+                        <option data-id="@member.Id" selected>@member.Name</option>
+                    }
+                    else
+                    {
+                        <option data-id="@member.Id">@member.Name</option>
+                    }
+                }
+
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-12">Books</label>
+        <div class="col-sm-12">
+            <select id="bookId" class="form-control">
+                @foreach (var book in ViewBag.Books)
+                {
+                    if (book.Id == Model.BookId)
+                    {
+                        <option data-id="@book.Id" selected>@book.Name</option>
+                    }
+                    else
+                    {
+                        <option data-id="@book.Id">@book.Name</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-12">The Date It Will Bring</label>
+        <div class="col-md-12">
+            <input id="bringDate" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" value="@Model.BringDate.ToString("yyyy-MM-dd")" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            <input id="updateGivenBook" data-id="@Model.Id" type="button" class="btn btn-block btn-info" value="Save" />
+        </div>
+    </div>
+</form>

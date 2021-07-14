@@ -1,0 +1,7 @@
+Extensions I used:
+
+Repository ve Unit Of Work patterns
+
+https://datatables.net/examples/api/multi_filter.html -> tablolar
+https://sweetalert2.github.io/ -> buttonlar
+https://www.quartz-scheduler.net/ -> zamanlayıcı

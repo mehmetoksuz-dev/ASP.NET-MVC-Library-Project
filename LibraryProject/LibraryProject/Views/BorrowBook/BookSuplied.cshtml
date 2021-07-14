@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Borrowed Books";
+}
+@using Library.Data.Model;
+@model List<BorrowBook>
+
+<h2 style="display:inline-block;">Borrowed Books</h2>
+
+<a href="@Url.Action("GiveBook","BorrowBook")" class="borrowBookUpdate btn btn-success" style="float:right">Give a Book</a>
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>Book Name</th>
+            <th>Book Borrower Member</th>
+            <th>Received Date</th>
+            <th>Bring Date</th>
+            <th>Update</th>
+            <th>Mark as Brought</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var borrowBook in Model)
+        {
+        <tr>
+            <td>@borrowBook.Book.Name</td>
+            <td>@borrowBook.Member.Name</td>
+            <td>@borrowBook.BorrowDate.ToString("dddd, dd MMMM yyyy")</td>
+            <td>@borrowBook.BringDate.ToString("dddd, dd MMMM yyyy")</td>
+            <td><a href="@Url.Action("UpdateBorrowBook","BorrowBook", new { borrowBookId = borrowBook.Id})" class="btn btn-danger">Update</a></td>
+            <td><button class="markAsBrought btn btn-success" value="@borrowBook.Id">Mark as Brought</button></td>
+        </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Book Name</th>
+            <th>Book Borrower Member</th>
+            <th>Received Date</th>
+            <th>Bring Date</th>
+            <th>Update</th>
+            <th>Mark as Brought</th>
+        </tr>
+    </tfoot>
+</table>
+

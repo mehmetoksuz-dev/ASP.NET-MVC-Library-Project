@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Membership";
+}
+@using Library.Data.Model;
+@model List<Member>
+
+<h2>Membership</h2>
+<a href="@Url.Action("Add","Membership")" class="btn btn-success" style="margin-bottom:15px;">Add</a>
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>Name & Surname</th>
+            <th>Mail</th>
+            <th>Role</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var member in Model)
+        {
+            <tr>
+                <td>@member.Name @member.Surname</td>
+                <td>@member.Mail</td>
+                <td>
+                    @if (member.Role == "1")
+                    {
+                        <button id="addRole" data-id="@member.Id" class="btn btn-success">Admin</button>
+                    }
+                    else if (member.Role == "2")
+                    {
+                        <button id="addRole" data-id="@member.Id" class="btn btn-success">Moderator</button>
+                    }
+                    else if (member.Role == "3")
+                    {
+                        <button id="addRole" data-id="@member.Id" class="btn btn-success">Member</button>
+                    }
+                </td>
+                <td><a href="@Url.Action("Update","Membership", new { memberId = member.Id })" class="btn btn-custom">Update</a></td>
+                <td><button class="deleteMembership btn btn-danger" value="@member.Id">Delete</button></td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Name & Surname</th>
+            <th>Mail</th>
+            <th>Role</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </tfoot>
+</table>
+
